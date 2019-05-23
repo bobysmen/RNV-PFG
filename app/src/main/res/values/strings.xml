@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">RNV-PFG</string>
+    <string name="login_login_txtLogin">Login</string>
+    <string name="login_txtPassword">Password</string>
+    <string name="login_txt_btnLogin">Login</string>
+    <string name="login_txt_btnRegister">Register</string>
+    <string name="registerEmployee_txtName">Name</string>
+    <string name="registerEmployee_txtSurName">Surname</string>
+    <string name="registerEmployee_txtEmail">Email</string>
+    <string name="registerEmployee_txtPhone">Phone Number</string>
+    <string name="registerEmployee_txtPassword">Password</string>
+    <string name="registerEmployee_txtConfirmPassword">Confirm Password</string>
+    <string name="registerEmployee_btnRegister">Done</string>
+</resources>
