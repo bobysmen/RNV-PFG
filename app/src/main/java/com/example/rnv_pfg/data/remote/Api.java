@@ -4,11 +4,18 @@ import com.example.rnv_pfg.data.models.Employee;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 public interface Api {
 
     @POST("employee/add")
     Call<Employee>addEmployee(@Body Employee employee);
+
+    @FormUrlEncoded
+    @POST("employee/login")
+    Call<Boolean>login(@Field("email") String email,
+                       @Field("password") String password);
 
 }

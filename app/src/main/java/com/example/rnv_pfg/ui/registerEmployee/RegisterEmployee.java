@@ -5,15 +5,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.rnv_pfg.R;
 import com.example.rnv_pfg.data.models.Employee;
+import com.example.rnv_pfg.data.remote.ApiService;
 import com.google.android.material.textfield.TextInputEditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegisterEmployee extends Fragment {
 
@@ -51,5 +56,22 @@ public class RegisterEmployee extends Fragment {
 
     private void addEmployee() {
         Employee employee = new Employee(txtName.getText().toString(), txtSurName.getText().toString(), txtEmail.getText().toString(), txtPhone.getText().toString(), txtPassword.getText().toString());
+
+        Call<Employee> call = ApiService.getInstance(getContext()).getApi().addEmployee(employee);
+        call.enqueue(new Callback<Employee>() {
+            @Override
+            public void onResponse(Call<Employee> call, Response<Employee> response) {
+                if(response.body() != null && response.isSuccessful()){
+                    Toast.makeText(getContext(),"El empleado" + response.body().getName() + "se agregro correctamente", Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(getContext(),"El empleado no se agrego correctamente", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Employee> call, Throwable t) {
+                Toast.makeText(getContext(),"Error de conexion", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

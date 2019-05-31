@@ -12,10 +12,18 @@
         <action
             android:id="@+id/action_loginFragment_to_registerEmployee"
             app:destination="@id/registerEmployee" />
+        <action
+            android:id="@+id/action_loginFragment_to_appointments"
+            app:destination="@id/appointments" />
     </fragment>
     <fragment
         android:id="@+id/registerEmployee"
         android:name="com.example.rnv_pfg.ui.registerEmployee.RegisterEmployee"
         android:label="register_employee_fragment"
         tools:layout="@layout/register_employee_fragment" />
+    <fragment
+        android:id="@+id/appointments"
+        android:name="com.example.rnv_pfg.ui.appointments.Appointments"
+        android:label="fragment_appointments"
+        tools:layout="@layout/fragment_appointments" />
 </navigation>
