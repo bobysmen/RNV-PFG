@@ -1,6 +1,9 @@
 package com.example.rnv_pfg.data.remote;
 
 import com.example.rnv_pfg.data.models.Employee;
+import com.example.rnv_pfg.data.models.Patient;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -17,5 +20,8 @@ public interface Api {
     @POST("employee/login")
     Call<Boolean>login(@Field("email") String email,
                        @Field("password") String password);
+
+    @POST("patient/all")
+    Call<List<Patient>>all();
 
 }
