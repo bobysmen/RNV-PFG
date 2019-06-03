@@ -1,4 +1,4 @@
-package com.example.rnv_pfg.ui.appointments;
+package com.example.rnv_pfg.ui.patient;
 
 
 import android.os.Bundle;
@@ -14,13 +14,14 @@ import com.example.rnv_pfg.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Appointments extends Fragment {
+public class Patient extends Fragment {
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_appointments, container, false);
+        return inflater.inflate(R.layout.fragment_patient, container, false);
     }
 
 }

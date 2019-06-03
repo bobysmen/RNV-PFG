@@ -55,7 +55,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                 if(response.body() != null && response.isSuccessful() && response.body()){
-                    Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_appointments);
+                    Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_appointmentsDaily);
                 }else{
                     Toast.makeText(getContext(),"El email o contraseña son incorrectos", Toast.LENGTH_LONG).show();
                 }

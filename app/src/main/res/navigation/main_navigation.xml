@@ -13,8 +13,11 @@
             android:id="@+id/action_loginFragment_to_registerEmployee"
             app:destination="@id/registerEmployee" />
         <action
-            android:id="@+id/action_loginFragment_to_appointments"
-            app:destination="@id/appointments" />
+            android:id="@+id/action_loginFragment_to_patient"
+            app:destination="@id/patient" />
+        <action
+            android:id="@+id/action_loginFragment_to_appointmentsDaily"
+            app:destination="@+id/appointmentsDaily" />
     </fragment>
     <fragment
         android:id="@+id/registerEmployee"
@@ -22,8 +25,13 @@
         android:label="register_employee_fragment"
         tools:layout="@layout/register_employee_fragment" />
     <fragment
-        android:id="@+id/appointments"
-        android:name="com.example.rnv_pfg.ui.appointments.Appointments"
-        android:label="fragment_appointments"
-        tools:layout="@layout/fragment_appointments" />
+        android:id="@+id/appointmentsDaily"
+        android:name="com.example.rnv_pfg.ui.appointmentsDaily.AppointmentsDaily"
+        android:label="fragment_appointmentsDaily"
+        tools:layout="@layout/fragment_appointments_daily" />
+    <fragment
+        android:id="@+id/patient"
+        android:name="com.example.rnv_pfg.ui.patient.Patient"
+        android:label="fragment_patient"
+        tools:layout="@layout/fragment_patient" />
 </navigation>
