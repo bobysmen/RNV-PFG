@@ -13,11 +13,11 @@
             android:id="@+id/action_loginFragment_to_registerEmployee"
             app:destination="@id/registerEmployee" />
         <action
-            android:id="@+id/action_loginFragment_to_patient"
-            app:destination="@id/patient" />
-        <action
             android:id="@+id/action_loginFragment_to_appointmentsDaily"
             app:destination="@+id/appointmentsDaily" />
+        <action
+            android:id="@+id/action_loginFragment_to_patients"
+            app:destination="@id/patients" />
     </fragment>
     <fragment
         android:id="@+id/registerEmployee"
@@ -30,8 +30,8 @@
         android:label="fragment_appointmentsDaily"
         tools:layout="@layout/fragment_appointments_daily" />
     <fragment
-        android:id="@+id/patient"
-        android:name="com.example.rnv_pfg.ui.patient.Patient"
-        android:label="fragment_patient"
-        tools:layout="@layout/fragment_patient" />
+        android:id="@+id/patients"
+        android:name="com.example.rnv_pfg.ui.patient.Patients"
+        android:label="fragment_patients"
+        tools:layout="@layout/fragment_patients" />
 </navigation>

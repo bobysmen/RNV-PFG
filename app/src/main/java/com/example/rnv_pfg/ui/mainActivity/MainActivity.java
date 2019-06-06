@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                     // ...
                     break;
                 case R.id.mnuPatient:
-                    Navigation.findNavController(this, R.id.navHostFragment).navigate(R.id.patient);
+                    Navigation.findNavController(this, R.id.navHostFragment).navigate(R.id.patients);
                     break;
             }
 
