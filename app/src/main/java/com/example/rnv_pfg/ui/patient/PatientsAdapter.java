@@ -18,7 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class PatientsAdapter extends ListAdapter<Patient, PatientsAdapter.ViewHolder> {
 
-    public PatientsAdapter() {
+    private final OnPatientClickListenerAdd onPatientClickListenerAdd;
+
+    public PatientsAdapter(OnPatientClickListenerAdd onPatientClickListenerAdd) {
         super(new DiffUtil.ItemCallback<Patient>() {
             @Override
             public boolean areItemsTheSame(@NonNull Patient oldItem, @NonNull Patient newItem) {
@@ -34,6 +36,7 @@ public class PatientsAdapter extends ListAdapter<Patient, PatientsAdapter.ViewHo
                         TextUtils.equals(oldItem.getAddress(), newItem.getAddress());
             }
         });
+        this.onPatientClickListenerAdd = onPatientClickListenerAdd;
     }
 
     @NonNull
@@ -41,7 +44,7 @@ public class PatientsAdapter extends ListAdapter<Patient, PatientsAdapter.ViewHo
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(
                 LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.patient_list_item, parent, false));
+                    .inflate(R.layout.patient_list_item, parent, false), onPatientClickListenerAdd);
     }
 
     @Override
@@ -65,11 +68,12 @@ public class PatientsAdapter extends ListAdapter<Patient, PatientsAdapter.ViewHo
         private final TextView lblSurname;
         private final Button btnAddAppointment;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, OnPatientClickListenerAdd onPatientClickListenerAdd) {
             super(itemView);
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblSurname = ViewCompat.requireViewById(itemView, R.id.lblSurname);
             btnAddAppointment = ViewCompat.requireViewById(itemView, R.id.btnAddAppointment);
+            btnAddAppointment.setOnClickListener(v -> onPatientClickListenerAdd.onItemClick(getAdapterPosition()));
         }
 
         void bind(Patient patient){

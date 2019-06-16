@@ -33,5 +33,14 @@
         android:id="@+id/patients"
         android:name="com.example.rnv_pfg.ui.patient.Patients"
         android:label="fragment_patients"
-        tools:layout="@layout/fragment_patients" />
+        tools:layout="@layout/fragment_patients" >
+        <action
+            android:id="@+id/action_patients_to_formAddAppointment"
+            app:destination="@id/formAddAppointment" />
+    </fragment>
+    <fragment
+        android:id="@+id/formAddAppointment"
+        android:name="com.example.rnv_pfg.ui.formAddAppointment.FormAddAppointment"
+        android:label="fragment_add_appointment_form"
+        tools:layout="@layout/fragment_add_appointment_form" />
 </navigation>

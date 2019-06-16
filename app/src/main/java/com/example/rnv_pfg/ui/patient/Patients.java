@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,9 +22,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rnv_pfg.R;
+import com.example.rnv_pfg.data.models.Appointment;
 import com.example.rnv_pfg.data.models.Patient;
 import com.example.rnv_pfg.data.remote.ApiService;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,7 +50,7 @@ public class Patients extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(this).get(PatientsViewModel.class);
+        viewModel = ViewModelProviders.of(getActivity()).get(PatientsViewModel.class);
         setupViews(getView());
         callPatients();
         observePatients();
@@ -83,9 +87,14 @@ public class Patients extends Fragment {
         lstPatient = ViewCompat.requireViewById(view, R.id.lstPatient);
 
         lstPatient.setHasFixedSize(true);
-        listAdapter = new PatientsAdapter();
+        listAdapter = new PatientsAdapter(position -> addAppointment(listAdapter.getItem(position)));
         lstPatient.setAdapter(listAdapter);
         lstPatient.setLayoutManager(new GridLayoutManager(getContext(), 1));
         lstPatient.setItemAnimator(new DefaultItemAnimator());
+    }
+
+    private void addAppointment(Patient patient) {
+        viewModel.setPatient(patient);
+        Navigation.findNavController(getView()).navigate(R.id.action_patients_to_formAddAppointment);
     }
 }

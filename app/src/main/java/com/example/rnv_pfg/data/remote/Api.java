@@ -1,5 +1,6 @@
 package com.example.rnv_pfg.data.remote;
 
+import com.example.rnv_pfg.data.models.Appointment;
 import com.example.rnv_pfg.data.models.Employee;
 import com.example.rnv_pfg.data.models.Patient;
 
@@ -23,5 +24,8 @@ public interface Api {
 
     @POST("patient/all")
     Call<List<Patient>>all();
+
+    @POST("appointment/add")
+    Call<Appointment>addAppointment(@Body Appointment appointment);
 
 }

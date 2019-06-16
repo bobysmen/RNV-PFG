@@ -14,6 +14,7 @@ import retrofit2.Call;
 
 public class PatientsViewModel extends ViewModel {
 
+    private Patient patient;
     private MutableLiveData<List<Patient>> patients = new MutableLiveData<>();
 
     public void setPatients (List<Patient> listPatients){
@@ -22,5 +23,13 @@ public class PatientsViewModel extends ViewModel {
 
     public LiveData<List<Patient>> getPatients(){
         return patients;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 }
