@@ -59,8 +59,8 @@ public class FormAddAppointment extends Fragment {
         txtTime = ViewCompat.requireViewById(view, R.id.txtTime);
         btnSaveAppointment = ViewCompat.requireViewById(view, R.id.btnSaveAppointment);
 
-        lblPatientName.setText(viewModelPatients.getPatient().getName());
-        lblPatientSurname.setText(viewModelPatients.getPatient().getSurname());
+        lblPatientName.setText(viewModelPatients.getPatientAdd().getName());
+        lblPatientSurname.setText(viewModelPatients.getPatientAdd().getSurname());
 
         txtDate.setOnClickListener(v -> showDatePickerDialog());
         txtTime.setOnClickListener(v -> showTimePickerDialog());
@@ -71,7 +71,7 @@ public class FormAddAppointment extends Fragment {
         //TODO hacer comprobaciones de campos rellenos
 
         String date = txtDate.getText().toString() + " " + txtTime.getText().toString();
-        Appointment appointment = new Appointment(11, viewModelPatients.getPatient().getId(), date);
+        Appointment appointment = new Appointment(11, viewModelPatients.getPatientAdd().getId(), date);
         Call<Appointment> call = ApiService.getInstance(getContext()).getApi().addAppointment(appointment);
         call.enqueue(new Callback<Appointment>() {
             @Override

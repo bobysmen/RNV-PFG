@@ -10,20 +10,20 @@ public class Appointment {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("id_employee")
-    @Expose
-    private Integer idEmployee;
-    @SerializedName("id_patient")
-    @Expose
-    private Integer idPatient;
     @SerializedName("date")
     @Expose
     private String date;
+    @SerializedName("patient")
+    @Expose
+    private Integer patient;
+    @SerializedName("employee")
+    @Expose
+    private Integer employee;
 
-    public Appointment(Integer idEmployee, Integer idPatient, String date) {
-        this.idEmployee = idEmployee;
-        this.idPatient = idPatient;
+    public Appointment(Integer employee, Integer patient, String date) {
         this.date = date;
+        this.patient = patient;
+        this.employee = employee;
     }
 
     public Integer getId() {
@@ -34,28 +34,28 @@ public class Appointment {
         this.id = id;
     }
 
-    public Integer getIdEmployee() {
-        return idEmployee;
-    }
-
-    public void setIdEmployee(Integer idEmployee) {
-        this.idEmployee = idEmployee;
-    }
-
-    public Integer getIdPatient() {
-        return idPatient;
-    }
-
-    public void setIdPatient(Integer idPatient) {
-        this.idPatient = idPatient;
-    }
-
     public String getDate() {
         return date;
     }
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public Integer getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Integer patient) {
+        this.patient = patient;
+    }
+
+    public Integer getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Integer employee) {
+        this.employee = employee;
     }
 
 }

@@ -87,14 +87,19 @@ public class Patients extends Fragment {
         lstPatient = ViewCompat.requireViewById(view, R.id.lstPatient);
 
         lstPatient.setHasFixedSize(true);
-        listAdapter = new PatientsAdapter(position -> addAppointment(listAdapter.getItem(position)));
+        listAdapter = new PatientsAdapter(position -> addAppointment(listAdapter.getItem(position)), position -> showListAppointments(listAdapter.getItem(position)));
         lstPatient.setAdapter(listAdapter);
         lstPatient.setLayoutManager(new GridLayoutManager(getContext(), 1));
         lstPatient.setItemAnimator(new DefaultItemAnimator());
     }
 
-    private void addAppointment(Patient patient) {
+    private void showListAppointments(Patient patient) {
         viewModel.setPatient(patient);
+        Navigation.findNavController(getView()).navigate(R.id.action_patients_to_listAppointmentPatient);
+    }
+
+    private void addAppointment(Patient patient) {
+        viewModel.setPatientAdd(patient);
         Navigation.findNavController(getView()).navigate(R.id.action_patients_to_formAddAppointment);
     }
 }

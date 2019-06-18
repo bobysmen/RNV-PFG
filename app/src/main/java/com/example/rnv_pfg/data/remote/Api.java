@@ -1,6 +1,7 @@
 package com.example.rnv_pfg.data.remote;
 
 import com.example.rnv_pfg.data.models.Appointment;
+import com.example.rnv_pfg.data.models.Diagnosis;
 import com.example.rnv_pfg.data.models.Employee;
 import com.example.rnv_pfg.data.models.Patient;
 
@@ -27,5 +28,16 @@ public interface Api {
 
     @POST("appointment/add")
     Call<Appointment>addAppointment(@Body Appointment appointment);
+
+    @FormUrlEncoded
+    @POST("appointment/allPerPatient")
+    Call<List<Appointment>>allPerPatient(@Field("patient") Integer patient);
+
+    @FormUrlEncoded
+    @POST("diagnosis/getDiagnosis")
+    Call<Diagnosis>getDiagnosis(@Field("appointment") Integer appointment);
+
+    @POST("diagnosis/addDiagnosis")
+    Call<Employee>addDiagnosis(@Body Diagnosis diagnosis);
 
 }

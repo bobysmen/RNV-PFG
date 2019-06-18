@@ -37,10 +37,27 @@
         <action
             android:id="@+id/action_patients_to_formAddAppointment"
             app:destination="@id/formAddAppointment" />
+        <action
+            android:id="@+id/action_patients_to_listAppointmentPatient"
+            app:destination="@id/listAppointmentPatient" />
     </fragment>
     <fragment
         android:id="@+id/formAddAppointment"
         android:name="com.example.rnv_pfg.ui.formAddAppointment.FormAddAppointment"
         android:label="fragment_add_appointment_form"
         tools:layout="@layout/fragment_add_appointment_form" />
+    <fragment
+        android:id="@+id/listAppointmentPatient"
+        android:name="com.example.rnv_pfg.ui.patient.listAppointmentPerPatient.ListAppointmentPatient"
+        android:label="fragment_list_appointment_patient"
+        tools:layout="@layout/fragment_list_appointment_patient" >
+        <action
+            android:id="@+id/action_listAppointmentPatient_to_diagnosisFragment"
+            app:destination="@id/diagnosisFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/diagnosisFragment"
+        android:name="com.example.rnv_pfg.ui.diagnosis.DiagnosisFragment"
+        android:label="fragment_diagnosis"
+        tools:layout="@layout/fragment_diagnosis" />
 </navigation>

@@ -19,8 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class PatientsAdapter extends ListAdapter<Patient, PatientsAdapter.ViewHolder> {
 
     private final OnPatientClickListenerAdd onPatientClickListenerAdd;
+    private final OnPatientClickListener onPatientClickListener;
 
-    public PatientsAdapter(OnPatientClickListenerAdd onPatientClickListenerAdd) {
+    public PatientsAdapter(OnPatientClickListenerAdd onPatientClickListenerAdd, OnPatientClickListener onPatientClickListener) {
         super(new DiffUtil.ItemCallback<Patient>() {
             @Override
             public boolean areItemsTheSame(@NonNull Patient oldItem, @NonNull Patient newItem) {
@@ -37,6 +38,7 @@ public class PatientsAdapter extends ListAdapter<Patient, PatientsAdapter.ViewHo
             }
         });
         this.onPatientClickListenerAdd = onPatientClickListenerAdd;
+        this.onPatientClickListener = onPatientClickListener;
     }
 
     @NonNull
@@ -44,7 +46,7 @@ public class PatientsAdapter extends ListAdapter<Patient, PatientsAdapter.ViewHo
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(
                 LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.patient_list_item, parent, false), onPatientClickListenerAdd);
+                    .inflate(R.layout.patient_list_item, parent, false), onPatientClickListenerAdd, onPatientClickListener);
     }
 
     @Override
@@ -68,12 +70,13 @@ public class PatientsAdapter extends ListAdapter<Patient, PatientsAdapter.ViewHo
         private final TextView lblSurname;
         private final Button btnAddAppointment;
 
-        public ViewHolder(@NonNull View itemView, OnPatientClickListenerAdd onPatientClickListenerAdd) {
+        public ViewHolder(@NonNull View itemView, OnPatientClickListenerAdd onPatientClickListenerAdd, OnPatientClickListener onPatientClickListener) {
             super(itemView);
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblSurname = ViewCompat.requireViewById(itemView, R.id.lblSurname);
             btnAddAppointment = ViewCompat.requireViewById(itemView, R.id.btnAddAppointment);
             btnAddAppointment.setOnClickListener(v -> onPatientClickListenerAdd.onItemClick(getAdapterPosition()));
+            itemView.setOnClickListener(v -> onPatientClickListener.onItemClick(getAdapterPosition()));
         }
 
         void bind(Patient patient){

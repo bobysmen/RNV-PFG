@@ -16,4 +16,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="patients_txtEmpty">Add Patient</string>
     <string name="patient_item_btnAddAppointment">Add Appointment</string>
+    <string name="listAppointment_lblEmptyView">No appointments</string>
+    <string name="appointmentItem_btnDiagnosis">Diagnosis</string>
+    <string name="diagnosis_lblDescription">Description</string>
+    <string name="diagnosis_lblTreatment">Treatment</string>
+    <string name="diagnosis_btnSaveDiagnosis">Save</string>
 </resources>
