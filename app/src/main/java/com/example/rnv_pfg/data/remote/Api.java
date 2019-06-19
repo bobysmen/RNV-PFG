@@ -40,4 +40,18 @@ public interface Api {
     @POST("diagnosis/addDiagnosis")
     Call<Employee>addDiagnosis(@Body Diagnosis diagnosis);
 
+    @FormUrlEncoded
+    @POST("patient/getPatientById")
+    Call<Patient>getPatientById(@Field("patient") Integer patient);
+
+    @FormUrlEncoded
+    @POST("appointment/today")
+    Call<List<Appointment>>allTodayAppointment(@Field("date") String date,
+                                               @Field("employee") Integer employee);
+
+    @FormUrlEncoded
+    @POST("appointment/perDay")
+    Call<List<Appointment>>perDay(@Field("date") String date,
+                                  @Field("employee") Integer employee);
+
 }

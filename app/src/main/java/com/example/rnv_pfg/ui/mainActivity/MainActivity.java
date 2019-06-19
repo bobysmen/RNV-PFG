@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                     Navigation.findNavController(this, R.id.navHostFragment).navigate(R.id.appointmentsDaily);
                     break;
                 case R.id.mnuAppointmentDate:
-                    // ...
+                    Navigation.findNavController(this, R.id.navHostFragment).navigate(R.id.formAppointmentsPerDay);
                     break;
                 case R.id.mnuPatient:
                     Navigation.findNavController(this, R.id.navHostFragment).navigate(R.id.patients);

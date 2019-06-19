@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.appointmentsDaily.AppointmentsDaily">
+    tools:context=".ui.appointmentsPerDay.AppoinmentsPerDay.AppointmentPerDay">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lstAppointmentsDaily"
+        android:id="@+id/lstAppointmentPerDay"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

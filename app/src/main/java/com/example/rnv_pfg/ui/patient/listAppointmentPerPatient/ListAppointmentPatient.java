@@ -26,6 +26,7 @@ import com.example.rnv_pfg.data.models.Appointment;
 import com.example.rnv_pfg.data.remote.ApiService;
 import com.example.rnv_pfg.ui.patient.PatientsViewModel;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -58,6 +59,9 @@ public class ListAppointmentPatient extends Fragment {
 
     private void observeAppointments() {
         viewModel.getAppointments().observe(this, appointments -> {
+
+            Collections.sort(appointments, (o1, o2) -> o1.getDate().compareTo(o2.getDate()));
+
             listAdapter.submitList(appointments);
             lblEmptyView.setVisibility(appointments.size() == 0 ? View.VISIBLE : View.INVISIBLE);
         });

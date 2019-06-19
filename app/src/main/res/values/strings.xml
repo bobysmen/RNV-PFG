@@ -21,4 +21,6 @@
     <string name="diagnosis_lblDescription">Description</string>
     <string name="diagnosis_lblTreatment">Treatment</string>
     <string name="diagnosis_btnSaveDiagnosis">Save</string>
+    <string name="formAppointmentsPerDay_lblDate">Insert date to show appointments</string>
+    <string name="btnDone">Done</string>
 </resources>

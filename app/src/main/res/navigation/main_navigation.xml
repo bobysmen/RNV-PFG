@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_loginFragment_to_patients"
             app:destination="@id/patients" />
+        <action
+            android:id="@+id/action_loginFragment_to_formAppointmentsPerDay"
+            app:destination="@id/formAppointmentsPerDay" />
     </fragment>
     <fragment
         android:id="@+id/registerEmployee"
@@ -28,7 +31,11 @@
         android:id="@+id/appointmentsDaily"
         android:name="com.example.rnv_pfg.ui.appointmentsDaily.AppointmentsDaily"
         android:label="fragment_appointmentsDaily"
-        tools:layout="@layout/fragment_appointments_daily" />
+        tools:layout="@layout/fragment_appointments_daily" >
+        <action
+            android:id="@+id/action_appointmentsDaily_to_diagnosisFragment"
+            app:destination="@id/diagnosisFragment" />
+    </fragment>
     <fragment
         android:id="@+id/patients"
         android:name="com.example.rnv_pfg.ui.patient.Patients"
@@ -60,4 +67,22 @@
         android:name="com.example.rnv_pfg.ui.diagnosis.DiagnosisFragment"
         android:label="fragment_diagnosis"
         tools:layout="@layout/fragment_diagnosis" />
+    <fragment
+        android:id="@+id/formAppointmentsPerDay"
+        android:name="com.example.rnv_pfg.ui.appointmentsPerDay.FormAppointmentsPerDay"
+        android:label="fragment_form_appointments_per_day"
+        tools:layout="@layout/fragment_form_appointments_per_day" >
+        <action
+            android:id="@+id/action_formAppointmentsPerDay_to_appointmentPerDay"
+            app:destination="@id/appointmentPerDay" />
+    </fragment>
+    <fragment
+        android:id="@+id/appointmentPerDay"
+        android:name="com.example.rnv_pfg.ui.appointmentsPerDay.AppoinmentsPerDay.AppointmentPerDay"
+        android:label="fragment_appointment_per_day"
+        tools:layout="@layout/fragment_appointment_per_day" >
+        <action
+            android:id="@+id/action_appointmentPerDay_to_diagnosisFragment"
+            app:destination="@id/diagnosisFragment" />
+    </fragment>
 </navigation>

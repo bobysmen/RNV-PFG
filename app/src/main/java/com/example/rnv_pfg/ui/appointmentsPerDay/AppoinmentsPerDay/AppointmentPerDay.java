@@ -1,4 +1,4 @@
-package com.example.rnv_pfg.ui.appointmentsDaily;
+package com.example.rnv_pfg.ui.appointmentsPerDay.AppoinmentsPerDay;
 
 
 import android.os.Bundle;
@@ -25,52 +25,48 @@ import com.example.rnv_pfg.R;
 import com.example.rnv_pfg.data.models.Appointment;
 import com.example.rnv_pfg.data.models.Patient;
 import com.example.rnv_pfg.data.remote.ApiService;
-import com.example.rnv_pfg.ui.mainActivity.MainActivity;
+import com.example.rnv_pfg.ui.appointmentsPerDay.FormAppointmentsPerDayViewModel;
 import com.example.rnv_pfg.ui.patient.PatientsViewModel;
 import com.example.rnv_pfg.ui.patient.listAppointmentPerPatient.ListAppointmentViewModel;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AppointmentsDaily extends Fragment {
+public class AppointmentPerDay extends Fragment {
 
-    private AppointmentDailyViewModel viewModel;
+    private AppointmentPerDayViewModel viewModel;
     private TextView lblEmptyView;
     private RecyclerView lstAppointment;
-    private AppointmentDailyAdapter listAdapter;
-    private ListAppointmentViewModel viewModelAppointment;
+    private AppoinmentPerDayAdapter listAdapter;
+    private FormAppointmentsPerDayViewModel viewModelFormPerDay;
     private PatientsViewModel viewModelPatient;
+    private ListAppointmentViewModel viewModelAppointment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_appointments_daily, container, false);
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_appointment_per_day, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        //Show BottomNav
-        MainActivity.showBottomNav(getActivity());
-        viewModel = ViewModelProviders.of(requireActivity()).get(AppointmentDailyViewModel.class);
+        viewModel = ViewModelProviders.of(requireActivity()).get(AppointmentPerDayViewModel.class);
+        viewModelFormPerDay = ViewModelProviders.of(requireActivity()).get(FormAppointmentsPerDayViewModel.class);
+        //Reutilizo los dos viewmodel siguientes para poder acceder a diagnosis desde distintos fragmentos
         viewModelAppointment = ViewModelProviders.of(requireActivity()).get(ListAppointmentViewModel.class);
         viewModelPatient = ViewModelProviders.of(requireActivity()).get(PatientsViewModel.class);
         setupViews(getView());
-        callAppointmentDaily();
-        observeAppointmentDaily();
-
+        callAppointmentPerDay();
+        observeAppointmentPerDay();
     }
 
-    private void observeAppointmentDaily() {
+    private void observeAppointmentPerDay() {
         viewModel.getAppointments().observe(this, appointments -> {
-
             Collections.sort(appointments, (o1, o2) -> o1.getDate().compareTo(o2.getDate()));
 
             listAdapter.submitList(appointments);
@@ -78,11 +74,8 @@ public class AppointmentsDaily extends Fragment {
         });
     }
 
-    private void callAppointmentDaily() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String date = simpleDateFormat.format(new Date());
-
-        Call<List<Appointment>> call = ApiService.getInstance(getContext()).getApi().allTodayAppointment(date, 11);
+    private void callAppointmentPerDay() {
+        Call<List<Appointment>> call = ApiService.getInstance(getContext()).getApi().perDay(viewModelFormPerDay.getDate(), 11);
         call.enqueue(new Callback<List<Appointment>>() {
             @Override
             public void onResponse(Call<List<Appointment>> call, Response<List<Appointment>> response) {
@@ -102,10 +95,10 @@ public class AppointmentsDaily extends Fragment {
 
     private void setupViews(View view) {
         lblEmptyView = ViewCompat.requireViewById(view, R.id.lblEmptyView);
-        lstAppointment = ViewCompat.requireViewById(view, R.id.lstAppointmentsDaily);
+        lstAppointment = ViewCompat.requireViewById(view, R.id.lstAppointmentPerDay);
 
         lstAppointment.setHasFixedSize(true);
-        listAdapter = new AppointmentDailyAdapter(position -> showDiagnosis(listAdapter.getItem(position)));
+        listAdapter = new AppoinmentPerDayAdapter(position -> showDiagnosis(listAdapter.getItem(position)));
         lstAppointment.setAdapter(listAdapter);
         lstAppointment.setLayoutManager(new GridLayoutManager(getContext(), 1));
         lstAppointment.setItemAnimator(new DefaultItemAnimator());
@@ -120,7 +113,7 @@ public class AppointmentsDaily extends Fragment {
                 if(response.body() != null && response.isSuccessful()){
                     viewModelPatient.setPatient(response.body());
                     //Evito navegar con pacientes nulos
-                    Navigation.findNavController(getView()).navigate(R.id.action_appointmentsDaily_to_diagnosisFragment);
+                    Navigation.findNavController(getView()).navigate(R.id.action_appointmentPerDay_to_diagnosisFragment);
                 }else{
                     Toast.makeText(getContext(),"A ocurrido un error", Toast.LENGTH_LONG).show();
                 }
