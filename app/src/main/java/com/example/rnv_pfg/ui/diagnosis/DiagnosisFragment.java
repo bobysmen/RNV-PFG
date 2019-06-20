@@ -11,6 +11,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import com.example.rnv_pfg.data.models.Diagnosis;
 import com.example.rnv_pfg.data.remote.ApiService;
 import com.example.rnv_pfg.ui.patient.PatientsViewModel;
 import com.example.rnv_pfg.ui.patient.listAppointmentPerPatient.ListAppointmentViewModel;
+import com.example.rnv_pfg.utils.TextViewUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -96,22 +98,26 @@ public class DiagnosisFragment extends Fragment {
     }
 
     private void saveDiagnosis() {
-        Diagnosis diagnosis = new Diagnosis(txtDescription.getText().toString(), txtTreatment.getText().toString(), viewModelAppointment.getAppointment().getId());
-        Call<Diagnosis> call = ApiService.getInstance(getContext()).getApi().addDiagnosis(diagnosis);
-        call.enqueue(new Callback<Diagnosis>() {
-            @Override
-            public void onResponse(Call<Diagnosis> call, Response<Diagnosis> response) {
-                if(response.body() != null && response.isSuccessful()){
-                    Toast.makeText(getContext(),"Save successfully", Toast.LENGTH_LONG).show();
-                }else{
-                    Toast.makeText(getContext(),"A ocurrido un error", Toast.LENGTH_LONG).show();
+        if (!TextUtils.isEmpty(txtDescription.getText().toString()) && !TextUtils.isEmpty(txtTreatment.getText().toString())) {
+            Diagnosis diagnosis = new Diagnosis(txtDescription.getText().toString(), txtTreatment.getText().toString(), viewModelAppointment.getAppointment().getId());
+            Call<Diagnosis> call = ApiService.getInstance(getContext()).getApi().addDiagnosis(diagnosis);
+            call.enqueue(new Callback<Diagnosis>() {
+                @Override
+                public void onResponse(Call<Diagnosis> call, Response<Diagnosis> response) {
+                    if(response.body() != null && response.isSuccessful()){
+                        Toast.makeText(getContext(),"Save successfully", Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(getContext(),"A ocurrido un error", Toast.LENGTH_LONG).show();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<Diagnosis> call, Throwable t) {
+                @Override
+                public void onFailure(Call<Diagnosis> call, Throwable t) {
 
-            }
-        });
+                }
+            });
+        }else{
+            Toast.makeText(getContext(), getString(R.string.formPerDay_msgValidationDate), Toast.LENGTH_LONG).show();
+        }
     }
 }

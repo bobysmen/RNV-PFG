@@ -33,4 +33,8 @@
     <string name="appointmentList_btnDelete">Delete</string>
     <string name="appointmentPerDay_btnDelete">Delete</string>
     <string name="appointmentDaily_btnDelete">Delete</string>
+    <string name="msgError_main_form">Invalid data</string>
+    <string name="formPerDay_msgValidationDate">Empty field</string>
+    <string name="formAddPatient_msgErrorValid">Error, check fields</string>
+    <string name="resgisterEmployee_msgDiferentPass">The passwords are different</string>
 </resources>

@@ -9,14 +9,17 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.rnv_pfg.R;
 import com.example.rnv_pfg.base.DatePickerDialogFragment;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,8 +54,12 @@ public class FormAppointmentsPerDay extends Fragment {
     }
 
     private void navigateToListAppointmentsPerDay() {
-        viewModel.setDate(txtDate.getText().toString());
-        Navigation.findNavController(getView()).navigate(R.id.action_formAppointmentsPerDay_to_appointmentPerDay);
+        if (!TextUtils.isEmpty(txtDate.getText().toString())) {
+            viewModel.setDate(txtDate.getText().toString());
+            Navigation.findNavController(getView()).navigate(R.id.action_formAppointmentsPerDay_to_appointmentPerDay);
+        }else{
+            Toast.makeText(getContext(), getString(R.string.formPerDay_msgValidationDate), Toast.LENGTH_LONG).show();
+        }
     }
 
     private void showDatePickerDialog() {

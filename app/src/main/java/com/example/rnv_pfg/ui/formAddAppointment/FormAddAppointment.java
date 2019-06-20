@@ -3,6 +3,7 @@ package com.example.rnv_pfg.ui.formAddAppointment;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,26 +69,29 @@ public class FormAddAppointment extends Fragment {
     }
 
     private void saveAppointment() {
-        //TODO hacer comprobaciones de campos rellenos
-
-        String date = txtDate.getText().toString() + " " + txtTime.getText().toString();
-        Appointment appointment = new Appointment(11, viewModelPatients.getPatientAdd().getId(), date);
-        Call<Appointment> call = ApiService.getInstance(getContext()).getApi().addAppointment(appointment);
-        call.enqueue(new Callback<Appointment>() {
-            @Override
-            public void onResponse(Call<Appointment> call, Response<Appointment> response) {
-                if(response.body() != null && response.isSuccessful()){
-                    Toast.makeText(getContext(),"Insertado correctamente", Toast.LENGTH_LONG).show();
-                }else{
-                    Toast.makeText(getContext(),"A ocurrido un error", Toast.LENGTH_LONG).show();
+        if (!TextUtils.isEmpty(txtDate.getText().toString()) && !TextUtils.isEmpty(txtTime.getText().toString())) {
+            String date = txtDate.getText().toString() + " " + txtTime.getText().toString();
+            //TODO Sustituir empleado 11 por empleado logueado
+            Appointment appointment = new Appointment(11, viewModelPatients.getPatientAdd().getId(), date);
+            Call<Appointment> call = ApiService.getInstance(getContext()).getApi().addAppointment(appointment);
+            call.enqueue(new Callback<Appointment>() {
+                @Override
+                public void onResponse(Call<Appointment> call, Response<Appointment> response) {
+                    if(response.body() != null && response.isSuccessful()){
+                        Toast.makeText(getContext(),"Insertado correctamente", Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(getContext(),"A ocurrido un error", Toast.LENGTH_LONG).show();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<Appointment> call, Throwable t) {
-                Toast.makeText(getContext(),"Error Conexion", Toast.LENGTH_LONG).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<Appointment> call, Throwable t) {
+                    Toast.makeText(getContext(),"Error Conexion", Toast.LENGTH_LONG).show();
+                }
+            });
+        }else{
+            Toast.makeText(getContext(), getString(R.string.formPerDay_msgValidationDate), Toast.LENGTH_LONG).show();
+        }
     }
 
     private void showTimePickerDialog() {
