@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.rnv_pfg.ui.login.LoginFragment"
-        android:label="LoginFragment" >
+        android:label="@string/loginFragment_lblFragment" >
         <action
             android:id="@+id/action_loginFragment_to_registerEmployee"
             app:destination="@id/registerEmployee" />
@@ -30,12 +30,12 @@
     <fragment
         android:id="@+id/registerEmployee"
         android:name="com.example.rnv_pfg.ui.registerEmployee.RegisterEmployee"
-        android:label="register_employee_fragment"
+        android:label="@string/registerEmployee_lblFragment"
         tools:layout="@layout/register_employee_fragment" />
     <fragment
         android:id="@+id/appointmentsDaily"
         android:name="com.example.rnv_pfg.ui.appointmentsDaily.AppointmentsDaily"
-        android:label="fragment_appointmentsDaily"
+        android:label="@string/appointmentsDaily_lblFragment"
         tools:layout="@layout/fragment_appointments_daily" >
         <action
             android:id="@+id/action_appointmentsDaily_to_diagnosisFragment"
@@ -44,7 +44,7 @@
     <fragment
         android:id="@+id/patients"
         android:name="com.example.rnv_pfg.ui.patient.Patients"
-        android:label="fragment_patients"
+        android:label="@string/patients_lblFragment"
         tools:layout="@layout/fragment_patients" >
         <action
             android:id="@+id/action_patients_to_formAddAppointment"
@@ -59,12 +59,12 @@
     <fragment
         android:id="@+id/formAddAppointment"
         android:name="com.example.rnv_pfg.ui.formAddAppointment.FormAddAppointment"
-        android:label="fragment_add_appointment_form"
+        android:label="@string/formAddAppointment_lblFragment"
         tools:layout="@layout/fragment_add_appointment_form" />
     <fragment
         android:id="@+id/listAppointmentPatient"
         android:name="com.example.rnv_pfg.ui.patient.listAppointmentPerPatient.ListAppointmentPatient"
-        android:label="fragment_list_appointment_patient"
+        android:label="@string/listAppointmentPatient_lblFragment"
         tools:layout="@layout/fragment_list_appointment_patient" >
         <action
             android:id="@+id/action_listAppointmentPatient_to_diagnosisFragment"
@@ -73,12 +73,12 @@
     <fragment
         android:id="@+id/diagnosisFragment"
         android:name="com.example.rnv_pfg.ui.diagnosis.DiagnosisFragment"
-        android:label="fragment_diagnosis"
+        android:label="@string/diagnosis_lblFragment"
         tools:layout="@layout/fragment_diagnosis" />
     <fragment
         android:id="@+id/formAppointmentsPerDay"
         android:name="com.example.rnv_pfg.ui.appointmentsPerDay.FormAppointmentsPerDay"
-        android:label="fragment_form_appointments_per_day"
+        android:label="@string/formAppointmentPerDay_lblFragment"
         tools:layout="@layout/fragment_form_appointments_per_day" >
         <action
             android:id="@+id/action_formAppointmentsPerDay_to_appointmentPerDay"
@@ -87,7 +87,7 @@
     <fragment
         android:id="@+id/appointmentPerDay"
         android:name="com.example.rnv_pfg.ui.appointmentsPerDay.AppoinmentsPerDay.AppointmentPerDay"
-        android:label="fragment_appointment_per_day"
+        android:label="@string/appointmentsPerDay_lblFragment"
         tools:layout="@layout/fragment_appointment_per_day" >
         <action
             android:id="@+id/action_appointmentPerDay_to_diagnosisFragment"
@@ -96,11 +96,11 @@
     <fragment
         android:id="@+id/formAddPatient"
         android:name="com.example.rnv_pfg.ui.formAddPatient.FormAddPatient"
-        android:label="fragment_form_add_patient"
+        android:label="@string/formAddPatient_lblFragment"
         tools:layout="@layout/fragment_form_add_patient" />
     <fragment
         android:id="@+id/detailsPatient"
         android:name="com.example.rnv_pfg.ui.patient.detailsPatient.DetailsPatient"
-        android:label="fragment_details_patient"
+        android:label="@string/detailsPatient_lblFragment"
         tools:layout="@layout/fragment_details_patient" />
 </navigation>

@@ -42,4 +42,15 @@
     <string name="bottomNav_appointDate">Appoint date</string>
     <string name="bottomNav_patients">Patients</string>
     <string name="bottomNav_add_patient">Add Patient</string>
+    <string name="registerEmployee_lblFragment">Register employee</string>
+    <string name="appointmentsDaily_lblFragment">Daily appointments</string>
+    <string name="patients_lblFragment">Patients</string>
+    <string name="formAddAppointment_lblFragment">Add appointment</string>
+    <string name="listAppointmentPatient_lblFragment">Appointments by patients</string>
+    <string name="diagnosis_lblFragment">Diagnosis</string>
+    <string name="formAppointmentPerDay_lblFragment">Form appointments by day</string>
+    <string name="appointmentsPerDay_lblFragment">Appointment by day</string>
+    <string name="formAddPatient_lblFragment">Add patient</string>
+    <string name="detailsPatient_lblFragment">Patient details</string>
+    <string name="loginFragment_lblFragment">Login</string>
 </resources>
