@@ -26,6 +26,9 @@ public interface Api {
     @POST("patient/all")
     Call<List<Patient>>all();
 
+    @POST("patient/add")
+    Call<Patient>addPatient(@Body Patient patient);
+
     @POST("appointment/add")
     Call<Appointment>addAppointment(@Body Appointment appointment);
 
@@ -34,11 +37,19 @@ public interface Api {
     Call<List<Appointment>>allPerPatient(@Field("patient") Integer patient);
 
     @FormUrlEncoded
+    @POST("appointment/delete")
+    Call<Boolean>deleteAppointment(@Field("id") Integer id);
+
+    @FormUrlEncoded
     @POST("diagnosis/getDiagnosis")
     Call<Diagnosis>getDiagnosis(@Field("appointment") Integer appointment);
 
     @POST("diagnosis/addDiagnosis")
-    Call<Employee>addDiagnosis(@Body Diagnosis diagnosis);
+    Call<Diagnosis>addDiagnosis(@Body Diagnosis diagnosis);
+
+    @FormUrlEncoded
+    @POST("diagnosis/delete")
+    Call<Boolean>deleteDiagnosis(@Field("appointment") Integer appointment);
 
     @FormUrlEncoded
     @POST("patient/getPatientById")

@@ -24,8 +24,7 @@ public class Patient {
     @Expose
     private String address;
 
-    public Patient(Integer id, String name, String surname, String email, String phone, String address) {
-        this.id = id;
+    public Patient(String name, String surname, String email, String phone, String address) {
         this.name = name;
         this.surname = surname;
         this.email = email;

@@ -91,10 +91,50 @@ public class ListAppointmentPatient extends Fragment {
         lstAppointment = ViewCompat.requireViewById(view, R.id.lstAppointments);
 
         lstAppointment.setHasFixedSize(true);
-        listAdapter = new ListAppointmentPatientAdapter(position -> showDiagnosis(listAdapter.getItem(position)));
+        listAdapter = new ListAppointmentPatientAdapter(position -> showDiagnosis(listAdapter.getItem(position)), position -> deleteAppointmentAndDiagnosis(listAdapter.getItem(position)));
         lstAppointment.setAdapter(listAdapter);
         lstAppointment.setLayoutManager(new GridLayoutManager(getContext(), 1));
         lstAppointment.setItemAnimator(new DefaultItemAnimator());
+    }
+
+    private void deleteAppointmentAndDiagnosis(Appointment appointment) {
+        //Primero borro el diagnostico y despues la cita
+        Call<Boolean> call = ApiService.getInstance(getContext()).getApi().deleteDiagnosis(appointment.getId());
+        call.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if(response.body() != null && response.isSuccessful()){
+                    deleteAppointment(appointment);
+                }else{
+                    Toast.makeText(getContext(),"A ocurrido un error", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void deleteAppointment(Appointment appointment) {
+        Call<Boolean> call = ApiService.getInstance(getContext()).getApi().deleteAppointment(appointment.getId());
+        call.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if(response.body() != null && response.isSuccessful() && response.body()){
+                    Toast.makeText(getContext(),"Appointment delete", Toast.LENGTH_LONG).show();
+                    callAppointment();
+                }else{
+                    Toast.makeText(getContext(),"A ocurrido un error,", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+
+            }
+        });
     }
 
     private void showDiagnosis(Appointment appointment) {

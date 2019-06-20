@@ -21,4 +21,11 @@
         android:title="Patients"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/mnuAddPatient"
+        android:enabled="true"
+        android:icon="@drawable/ic_smoking_rooms_black_24dp"
+        android:title="Add Patient"
+        app:showAsAction="ifRoom" />
+
 </menu>

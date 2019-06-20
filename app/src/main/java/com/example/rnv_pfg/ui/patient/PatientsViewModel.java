@@ -16,6 +16,7 @@ public class PatientsViewModel extends ViewModel {
 
     private Patient patientAdd;
     private Patient patient;
+    private Patient patientToShow;
     private MutableLiveData<List<Patient>> patients = new MutableLiveData<>();
 
     public void setPatients (List<Patient> listPatients){
@@ -40,5 +41,13 @@ public class PatientsViewModel extends ViewModel {
 
     public void setPatient(Patient patient) {
         this.patient = patient;
+    }
+
+    public Patient getPatientToShow() {
+        return patientToShow;
+    }
+
+    public void setPatientToShow(Patient patientToShow) {
+        this.patientToShow = patientToShow;
     }
 }

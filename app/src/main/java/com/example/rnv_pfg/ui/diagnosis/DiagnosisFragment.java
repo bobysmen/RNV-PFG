@@ -88,8 +88,30 @@ public class DiagnosisFragment extends Fragment {
         txtTreatment = ViewCompat.requireViewById(view, R.id.txtTreatment);
         btnSave = ViewCompat.requireViewById(view, R.id.btnSaveDiagnosis);
 
+        btnSave.setOnClickListener(v -> saveDiagnosis());
+
         lblName.setText(viewModelPatient.getPatient().getName());
         lblSurname.setText(viewModelPatient.getPatient().getSurname());
         lblDate.setText(viewModelAppointment.getAppointment().getDate());
+    }
+
+    private void saveDiagnosis() {
+        Diagnosis diagnosis = new Diagnosis(txtDescription.getText().toString(), txtTreatment.getText().toString(), viewModelAppointment.getAppointment().getId());
+        Call<Diagnosis> call = ApiService.getInstance(getContext()).getApi().addDiagnosis(diagnosis);
+        call.enqueue(new Callback<Diagnosis>() {
+            @Override
+            public void onResponse(Call<Diagnosis> call, Response<Diagnosis> response) {
+                if(response.body() != null && response.isSuccessful()){
+                    Toast.makeText(getContext(),"Save successfully", Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(getContext(),"A ocurrido un error", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Diagnosis> call, Throwable t) {
+
+            }
+        });
     }
 }

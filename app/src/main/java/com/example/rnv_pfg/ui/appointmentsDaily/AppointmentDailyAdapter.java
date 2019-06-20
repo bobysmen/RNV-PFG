@@ -25,8 +25,9 @@ import retrofit2.Response;
 public class AppointmentDailyAdapter extends ListAdapter<Appointment, AppointmentDailyAdapter.ViewHolder> {
 
     private final OnAppointmentDailyClickListenerDiagnosis onAppointmentDailyClickListenerDiagnosis;
+    private final OnAppointmentDailyClickListenerDelete onAppointmentDailyClickListenerDelete;
 
-    public AppointmentDailyAdapter(OnAppointmentDailyClickListenerDiagnosis onAppointmentDailyClickListenerDiagnosis) {
+    public AppointmentDailyAdapter(OnAppointmentDailyClickListenerDiagnosis onAppointmentDailyClickListenerDiagnosis, OnAppointmentDailyClickListenerDelete onAppointmentDailyClickListenerDelete) {
         super(new DiffUtil.ItemCallback<Appointment>() {
             @Override
             public boolean areItemsTheSame(@NonNull Appointment oldItem, @NonNull Appointment newItem) {
@@ -41,6 +42,7 @@ public class AppointmentDailyAdapter extends ListAdapter<Appointment, Appointmen
             }
         });
         this.onAppointmentDailyClickListenerDiagnosis = onAppointmentDailyClickListenerDiagnosis;
+        this.onAppointmentDailyClickListenerDelete = onAppointmentDailyClickListenerDelete;
     }
 
     @NonNull
@@ -48,7 +50,7 @@ public class AppointmentDailyAdapter extends ListAdapter<Appointment, Appointmen
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(
                 LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.fragment_appointment_daily_item, parent, false), onAppointmentDailyClickListenerDiagnosis);
+                    .inflate(R.layout.fragment_appointment_daily_item, parent, false), onAppointmentDailyClickListenerDiagnosis, onAppointmentDailyClickListenerDelete);
     }
 
     @Override
@@ -73,15 +75,18 @@ public class AppointmentDailyAdapter extends ListAdapter<Appointment, Appointmen
         private final TextView lblSurname;
         private final TextView lblDate;
         private final Button btnDiagnosis;
+        private final Button btnDelete;
 
-        public ViewHolder(@NonNull View itemView, OnAppointmentDailyClickListenerDiagnosis onAppointmentDailyClickListenerDiagnosis) {
+        public ViewHolder(@NonNull View itemView, OnAppointmentDailyClickListenerDiagnosis onAppointmentDailyClickListenerDiagnosis, OnAppointmentDailyClickListenerDelete onAppointmentDailyClickListenerDelete) {
             super(itemView);
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblSurname = ViewCompat.requireViewById(itemView, R.id.lblSurname);
             lblDate = ViewCompat.requireViewById(itemView, R.id.lblDate);
             btnDiagnosis = ViewCompat.requireViewById(itemView, R.id.btnDiagnosis);
+            btnDelete = ViewCompat.requireViewById(itemView, R.id.btnDeleteAppointment);
 
             btnDiagnosis.setOnClickListener(v -> onAppointmentDailyClickListenerDiagnosis.onItemClick(getAdapterPosition()));
+            btnDelete.setOnClickListener(v -> onAppointmentDailyClickListenerDelete.onItemClick(getAdapterPosition()));
         }
 
         void bind(Appointment appointment){

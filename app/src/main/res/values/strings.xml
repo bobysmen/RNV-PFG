@@ -23,4 +23,14 @@
     <string name="diagnosis_btnSaveDiagnosis">Save</string>
     <string name="formAppointmentsPerDay_lblDate">Insert date to show appointments</string>
     <string name="btnDone">Done</string>
+    <string name="addPatient_lblName">Name</string>
+    <string name="addPatient_lblSurname">Surname</string>
+    <string name="addPatient_lblEmail">Email</string>
+    <string name="addPatient_lblPhone">Phone</string>
+    <string name="addPatient_lblAddress">Address</string>
+    <string name="addPatient_btnSavePatient">Save</string>
+    <string name="patientList_btnListAppointment">List Appointment</string>
+    <string name="appointmentList_btnDelete">Delete</string>
+    <string name="appointmentPerDay_btnDelete">Delete</string>
+    <string name="appointmentDaily_btnDelete">Delete</string>
 </resources>

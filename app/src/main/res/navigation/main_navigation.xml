@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_loginFragment_to_formAppointmentsPerDay"
             app:destination="@id/formAppointmentsPerDay" />
+        <action
+            android:id="@+id/action_loginFragment_to_formAddPatient"
+            app:destination="@id/formAddPatient" />
     </fragment>
     <fragment
         android:id="@+id/registerEmployee"
@@ -47,6 +50,9 @@
         <action
             android:id="@+id/action_patients_to_listAppointmentPatient"
             app:destination="@id/listAppointmentPatient" />
+        <action
+            android:id="@+id/action_patients_to_detailsPatient"
+            app:destination="@id/detailsPatient" />
     </fragment>
     <fragment
         android:id="@+id/formAddAppointment"
@@ -85,4 +91,14 @@
             android:id="@+id/action_appointmentPerDay_to_diagnosisFragment"
             app:destination="@id/diagnosisFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/formAddPatient"
+        android:name="com.example.rnv_pfg.ui.formAddPatient.FormAddPatient"
+        android:label="fragment_form_add_patient"
+        tools:layout="@layout/fragment_form_add_patient" />
+    <fragment
+        android:id="@+id/detailsPatient"
+        android:name="com.example.rnv_pfg.ui.patient.detailsPatient.DetailsPatient"
+        android:label="fragment_details_patient"
+        tools:layout="@layout/fragment_details_patient" />
 </navigation>

@@ -20,8 +20,9 @@ public class PatientsAdapter extends ListAdapter<Patient, PatientsAdapter.ViewHo
 
     private final OnPatientClickListenerAdd onPatientClickListenerAdd;
     private final OnPatientClickListener onPatientClickListener;
+    private final OnPatientClickListenerAppoinment onPatientClickListenerAppoinment;
 
-    public PatientsAdapter(OnPatientClickListenerAdd onPatientClickListenerAdd, OnPatientClickListener onPatientClickListener) {
+    public PatientsAdapter(OnPatientClickListenerAdd onPatientClickListenerAdd, OnPatientClickListenerAppoinment onPatientClickListenerAppoinment, OnPatientClickListener onPatientClickListener) {
         super(new DiffUtil.ItemCallback<Patient>() {
             @Override
             public boolean areItemsTheSame(@NonNull Patient oldItem, @NonNull Patient newItem) {
@@ -38,6 +39,7 @@ public class PatientsAdapter extends ListAdapter<Patient, PatientsAdapter.ViewHo
             }
         });
         this.onPatientClickListenerAdd = onPatientClickListenerAdd;
+        this.onPatientClickListenerAppoinment = onPatientClickListenerAppoinment;
         this.onPatientClickListener = onPatientClickListener;
     }
 
@@ -46,7 +48,7 @@ public class PatientsAdapter extends ListAdapter<Patient, PatientsAdapter.ViewHo
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(
                 LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.patient_list_item, parent, false), onPatientClickListenerAdd, onPatientClickListener);
+                    .inflate(R.layout.patient_list_item, parent, false), onPatientClickListenerAdd, onPatientClickListenerAppoinment, onPatientClickListener);
     }
 
     @Override
@@ -69,13 +71,17 @@ public class PatientsAdapter extends ListAdapter<Patient, PatientsAdapter.ViewHo
         private final TextView lblName;
         private final TextView lblSurname;
         private final Button btnAddAppointment;
+        private final Button btnListAppointment;
 
-        public ViewHolder(@NonNull View itemView, OnPatientClickListenerAdd onPatientClickListenerAdd, OnPatientClickListener onPatientClickListener) {
+        public ViewHolder(@NonNull View itemView, OnPatientClickListenerAdd onPatientClickListenerAdd, OnPatientClickListenerAppoinment onPatientClickListenerAppoinment, OnPatientClickListener onPatientClickListener) {
             super(itemView);
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblSurname = ViewCompat.requireViewById(itemView, R.id.lblSurname);
             btnAddAppointment = ViewCompat.requireViewById(itemView, R.id.btnAddAppointment);
+            btnListAppointment = ViewCompat.requireViewById(itemView, R.id.btnListAppointment);
+
             btnAddAppointment.setOnClickListener(v -> onPatientClickListenerAdd.onItemClick(getAdapterPosition()));
+            btnListAppointment.setOnClickListener(v -> onPatientClickListenerAppoinment.onItemClick(getAdapterPosition()));
             itemView.setOnClickListener(v -> onPatientClickListener.onItemClick(getAdapterPosition()));
         }
 

@@ -19,9 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ListAppointmentPatientAdapter extends ListAdapter<Appointment, ListAppointmentPatientAdapter.ViewHolder> {
 
     private final OnAppointmentClickListenerAdd onAppointmentClickListenerAdd;
+    private final OnAppointmentClickListenerDelete onAppointmentClickListenerDelete;
 
 
-    protected ListAppointmentPatientAdapter(OnAppointmentClickListenerAdd onAppointmentClickListenerAdd) {
+    protected ListAppointmentPatientAdapter(OnAppointmentClickListenerAdd onAppointmentClickListenerAdd, OnAppointmentClickListenerDelete onAppointmentClickListenerDelete) {
         super(new DiffUtil.ItemCallback<Appointment>() {
             @Override
             public boolean areItemsTheSame(@NonNull Appointment oldItem, @NonNull Appointment newItem) {
@@ -36,6 +37,7 @@ public class ListAppointmentPatientAdapter extends ListAdapter<Appointment, List
             }
         });
         this.onAppointmentClickListenerAdd = onAppointmentClickListenerAdd;
+        this.onAppointmentClickListenerDelete = onAppointmentClickListenerDelete;
     }
 
     @NonNull
@@ -43,7 +45,7 @@ public class ListAppointmentPatientAdapter extends ListAdapter<Appointment, List
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(
                 LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.appointment_list_item, parent, false), onAppointmentClickListenerAdd);
+                    .inflate(R.layout.appointment_list_item, parent, false), onAppointmentClickListenerAdd, onAppointmentClickListenerDelete);
     }
 
     @Override
@@ -65,12 +67,16 @@ public class ListAppointmentPatientAdapter extends ListAdapter<Appointment, List
 
         private final TextView lblDate;
         private final Button btnDiagnosis;
+        private final Button btnDelete;
 
-        public ViewHolder(@NonNull View itemView, OnAppointmentClickListenerAdd onAppointmentClickListenerAdd) {
+        public ViewHolder(@NonNull View itemView, OnAppointmentClickListenerAdd onAppointmentClickListenerAdd, OnAppointmentClickListenerDelete onAppointmentClickListenerDelete) {
             super(itemView);
             lblDate = ViewCompat.requireViewById(itemView, R.id.lblDate);
             btnDiagnosis = ViewCompat.requireViewById(itemView, R.id.btnDiagnosis);
+            btnDelete = ViewCompat.requireViewById(itemView, R.id.btnDeleteAppointment);
+
             btnDiagnosis.setOnClickListener(v -> onAppointmentClickListenerAdd.onItemClick(getAdapterPosition()));
+            btnDelete.setOnClickListener(v -> onAppointmentClickListenerDelete.onItemClick(getAdapterPosition()));
         }
 
         void bind(Appointment appointment){

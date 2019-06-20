@@ -8,12 +8,14 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
 import com.example.rnv_pfg.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.mnuPatient:
                     Navigation.findNavController(this, R.id.navHostFragment).navigate(R.id.patients);
+                    break;
+                case R.id.mnuAddPatient:
+                    Navigation.findNavController(this, R.id.navHostFragment).navigate(R.id.formAddPatient);
                     break;
             }
 
