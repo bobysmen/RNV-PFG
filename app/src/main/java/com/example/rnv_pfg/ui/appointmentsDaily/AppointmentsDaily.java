@@ -25,6 +25,7 @@ import com.example.rnv_pfg.R;
 import com.example.rnv_pfg.data.models.Appointment;
 import com.example.rnv_pfg.data.models.Patient;
 import com.example.rnv_pfg.data.remote.ApiService;
+import com.example.rnv_pfg.ui.login.LoginViewModel;
 import com.example.rnv_pfg.ui.mainActivity.MainActivity;
 import com.example.rnv_pfg.ui.patient.PatientsViewModel;
 import com.example.rnv_pfg.ui.patient.listAppointmentPerPatient.ListAppointmentViewModel;
@@ -47,6 +48,7 @@ public class AppointmentsDaily extends Fragment {
     private AppointmentDailyAdapter listAdapter;
     private ListAppointmentViewModel viewModelAppointment;
     private PatientsViewModel viewModelPatient;
+    private LoginViewModel viewModelLogin;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,6 +61,8 @@ public class AppointmentsDaily extends Fragment {
         super.onActivityCreated(savedInstanceState);
         //Show BottomNav
         MainActivity.showBottomNav(getActivity());
+        //Empleado Logueado
+        viewModelLogin = ViewModelProviders.of(requireActivity()).get(LoginViewModel.class);
         viewModel = ViewModelProviders.of(requireActivity()).get(AppointmentDailyViewModel.class);
         viewModelAppointment = ViewModelProviders.of(requireActivity()).get(ListAppointmentViewModel.class);
         viewModelPatient = ViewModelProviders.of(requireActivity()).get(PatientsViewModel.class);
@@ -82,7 +86,7 @@ public class AppointmentsDaily extends Fragment {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = simpleDateFormat.format(new Date());
 
-        Call<List<Appointment>> call = ApiService.getInstance(getContext()).getApi().allTodayAppointment(date, 11);
+        Call<List<Appointment>> call = ApiService.getInstance(getContext()).getApi().allTodayAppointment(date, viewModelLogin.getEmployee().getId());
         call.enqueue(new Callback<List<Appointment>>() {
             @Override
             public void onResponse(Call<List<Appointment>> call, Response<List<Appointment>> response) {

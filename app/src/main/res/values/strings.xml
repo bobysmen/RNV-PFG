@@ -37,4 +37,9 @@
     <string name="formPerDay_msgValidationDate">Empty field</string>
     <string name="formAddPatient_msgErrorValid">Error, check fields</string>
     <string name="resgisterEmployee_msgDiferentPass">The passwords are different</string>
+    <string name="addAppointmentForm_btnSave">Save Appointment</string>
+    <string name="bottomNav_daily_appoint">Daily appoint</string>
+    <string name="bottomNav_appointDate">Appoint date</string>
+    <string name="bottomNav_patients">Patients</string>
+    <string name="bottomNav_add_patient">Add Patient</string>
 </resources>

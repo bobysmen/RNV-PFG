@@ -5,27 +5,27 @@
     <item
         android:id="@+id/mnuAppointmentDaily"
         android:enabled="true"
-        android:icon="@drawable/ic_smoking_rooms_black_24dp"
-        android:title="Daily appointments"
+        android:icon="@drawable/ic_timer"
+        android:title="@string/bottomNav_daily_appoint"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/mnuAppointmentDate"
         android:enabled="true"
-        android:icon="@drawable/ic_smoking_rooms_black_24dp"
-        android:title="Appointments by date"
+        android:icon="@drawable/ic_appointment"
+        android:title="@string/bottomNav_appointDate"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/mnuPatient"
         android:enabled="true"
-        android:icon="@drawable/ic_smoking_rooms_black_24dp"
-        android:title="Patients"
+        android:icon="@drawable/ic_patientmnu"
+        android:title="@string/bottomNav_patients"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/mnuAddPatient"
         android:enabled="true"
-        android:icon="@drawable/ic_smoking_rooms_black_24dp"
-        android:title="Add Patient"
+        android:icon="@drawable/ic_patient_add"
+        android:title="@string/bottomNav_add_patient"
         app:showAsAction="ifRoom" />
 
 </menu>

@@ -1,5 +1,7 @@
 package com.example.rnv_pfg.ui.login;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.rnv_pfg.R;
+import com.example.rnv_pfg.data.models.Employee;
 import com.example.rnv_pfg.data.remote.ApiService;
 import com.example.rnv_pfg.utils.TextViewUtils;
 import com.example.rnv_pfg.utils.ValidationsUtils;
@@ -19,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +36,7 @@ public class LoginFragment extends Fragment {
     private Button btnRegister;
     private TextInputLayout tilLogin;
     private TextInputLayout tilPassword;
+    private LoginViewModel viewModel;
 
     @Nullable
     @Override
@@ -42,9 +47,9 @@ public class LoginFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        viewModel = ViewModelProviders.of(requireActivity()).get(LoginViewModel.class);
         setupViews(getView());
         fieldsValidations();
-        //TODO Almacenar empleado logeado
     }
 
     private void setupViews(View view) {
@@ -90,19 +95,22 @@ public class LoginFragment extends Fragment {
     private void login() {
         //Si el formulario esta ok
         if (checkEmail(txtLogin.getText().toString()) && checkString(txtPassword.getText().toString(), tilPassword)) {
-            Call<Boolean> call = ApiService.getInstance(getContext()).getApi().login(txtLogin.getText().toString(), txtPassword.getText().toString());
-            call.enqueue(new Callback<Boolean>() {
+            Call<Employee> call = ApiService.getInstance(getContext()).getApi().login(txtLogin.getText().toString(), txtPassword.getText().toString());
+            call.enqueue(new Callback<Employee>() {
                 @Override
-                public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                    if(response.body() != null && response.isSuccessful() && response.body()){
+                public void onResponse(Call<Employee> call, Response<Employee> response) {
+                    if(response.body() != null && response.isSuccessful()){
+                        //Almacenar Empleado logueado
+                        viewModel.setEmployee(response.body());
                         Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_appointmentsDaily);
                     }else{
+                        //TODO Mensajes de error en recursos de cadenas
                         Toast.makeText(getContext(),"El email o contraseña son incorrectos", Toast.LENGTH_LONG).show();
                     }
                 }
 
                 @Override
-                public void onFailure(Call<Boolean> call, Throwable t) {
+                public void onFailure(Call<Employee> call, Throwable t) {
                     Toast.makeText(getContext(),"Error de conexion", Toast.LENGTH_LONG).show();
                 }
             });
@@ -111,6 +119,7 @@ public class LoginFragment extends Fragment {
             checkString(txtPassword.getText().toString(), tilPassword);
         }
     }
+
 
     private void navigateRegister() {
         Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_registerEmployee);

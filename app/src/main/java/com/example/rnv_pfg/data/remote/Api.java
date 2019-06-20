@@ -20,7 +20,7 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("employee/login")
-    Call<Boolean>login(@Field("email") String email,
+    Call<Employee>login(@Field("email") String email,
                        @Field("password") String password);
 
     @POST("patient/all")

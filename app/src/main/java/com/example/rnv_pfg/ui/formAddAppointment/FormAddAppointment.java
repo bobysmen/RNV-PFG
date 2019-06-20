@@ -18,6 +18,7 @@ import com.example.rnv_pfg.base.DatePickerDialogFragment;
 import com.example.rnv_pfg.base.TimePickerDialogFragment;
 import com.example.rnv_pfg.data.models.Appointment;
 import com.example.rnv_pfg.data.remote.ApiService;
+import com.example.rnv_pfg.ui.login.LoginViewModel;
 import com.example.rnv_pfg.ui.patient.PatientsViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -38,6 +39,7 @@ public class FormAddAppointment extends Fragment {
     private PatientsViewModel viewModelPatients;
     private TextView lblPatientName;
     private TextView lblPatientSurname;
+    private LoginViewModel viewModelLogin;
 
     @Nullable
     @Override
@@ -48,7 +50,8 @@ public class FormAddAppointment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        //Empleado Logueado
+        viewModelLogin = ViewModelProviders.of(requireActivity()).get(LoginViewModel.class);
         viewModelPatients = ViewModelProviders.of(requireActivity()).get(PatientsViewModel.class);
         setupViews(getView());
     }
@@ -71,8 +74,7 @@ public class FormAddAppointment extends Fragment {
     private void saveAppointment() {
         if (!TextUtils.isEmpty(txtDate.getText().toString()) && !TextUtils.isEmpty(txtTime.getText().toString())) {
             String date = txtDate.getText().toString() + " " + txtTime.getText().toString();
-            //TODO Sustituir empleado 11 por empleado logueado
-            Appointment appointment = new Appointment(11, viewModelPatients.getPatientAdd().getId(), date);
+            Appointment appointment = new Appointment(viewModelLogin.getEmployee().getId(), viewModelPatients.getPatientAdd().getId(), date);
             Call<Appointment> call = ApiService.getInstance(getContext()).getApi().addAppointment(appointment);
             call.enqueue(new Callback<Appointment>() {
                 @Override
