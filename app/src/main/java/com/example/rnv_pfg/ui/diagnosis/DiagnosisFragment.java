@@ -66,13 +66,13 @@ public class DiagnosisFragment extends Fragment {
                 if(response.body() != null && response.isSuccessful()){
                     fillField(response.body());
                 }else{
-                    Toast.makeText(getContext(),"A ocurrido un error", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),getString(R.string.call_msgNullResponse), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Diagnosis> call, Throwable t) {
-                Toast.makeText(getContext(),"Still not diagnosed", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),getString(R.string.onFailure_getDiagnosis_msg), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -105,15 +105,15 @@ public class DiagnosisFragment extends Fragment {
                 @Override
                 public void onResponse(Call<Diagnosis> call, Response<Diagnosis> response) {
                     if(response.body() != null && response.isSuccessful()){
-                        Toast.makeText(getContext(),"Save successfully", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),getString(R.string.onResponse_msgSaveSuccess), Toast.LENGTH_LONG).show();
                     }else{
-                        Toast.makeText(getContext(),"A ocurrido un error", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),getString(R.string.call_msgNullResponse), Toast.LENGTH_LONG).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Diagnosis> call, Throwable t) {
-
+                    Toast.makeText(getContext(),getString(R.string.call_onFailure_msg), Toast.LENGTH_LONG).show();
                 }
             });
         }else{

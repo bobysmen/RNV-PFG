@@ -80,15 +80,15 @@ public class FormAddAppointment extends Fragment {
                 @Override
                 public void onResponse(Call<Appointment> call, Response<Appointment> response) {
                     if(response.body() != null && response.isSuccessful()){
-                        Toast.makeText(getContext(),"Insertado correctamente", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),getString(R.string.onResponse_msgSaveSuccess), Toast.LENGTH_LONG).show();
                     }else{
-                        Toast.makeText(getContext(),"A ocurrido un error", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),getString(R.string.call_msgNullResponse), Toast.LENGTH_LONG).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Appointment> call, Throwable t) {
-                    Toast.makeText(getContext(),"Error Conexion", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),getString(R.string.call_onFailure_msg), Toast.LENGTH_LONG).show();
                 }
             });
         }else{

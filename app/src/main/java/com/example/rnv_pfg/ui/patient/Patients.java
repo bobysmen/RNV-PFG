@@ -74,13 +74,13 @@ public class Patients extends Fragment {
                 if(response.body() != null && response.isSuccessful()){
                     viewModel.setPatients(response.body());
                 }else{
-                    Toast.makeText(getContext(),"A ocurrido un error", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),getString(R.string.call_msgNullResponse), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Patient>> call, Throwable t) {
-                Toast.makeText(getContext(),"Error de conexion", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),getString(R.string.call_onFailure_msg), Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RNV-PFG</string>
+    <string name="app_name">FisioSaludApp</string>
     <string name="login_login_txtLogin">Login</string>
     <string name="login_txtPassword">Password</string>
     <string name="login_txt_btnLogin">Login</string>
@@ -13,7 +13,7 @@
     <string name="registerEmployee_btnRegister">Done</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="patients_txtEmpty">Add Patient</string>
     <string name="patient_item_btnAddAppointment">Add Appointment</string>
     <string name="listAppointment_lblEmptyView">No appointments</string>
@@ -53,4 +53,18 @@
     <string name="formAddPatient_lblFragment">Add patient</string>
     <string name="detailsPatient_lblFragment">Patient details</string>
     <string name="loginFragment_lblFragment">Login</string>
+    <string name="call_msgNullResponse">an error has occurred</string>
+    <string name="call_onFailure_msg">connection failure</string>
+    <string name="onResponse_success_appintmentDelete">Appointment delete</string>
+    <string name="onFailure_getDiagnosis_msg">Still not diagnosed</string>
+    <string name="onResponse_msgSaveSuccess">Save successfully</string>
+    <string name="onFailure_msgLoginIncorrect">The email or password is incorrect</string>
+    <string name="hint_txtHint">Date</string>
+    <string name="hint_txtTime">Time</string>
+    <string name="details_lblName">Name:</string>
+    <string name="details_lblSurname">Surname:</string>
+    <string name="details_lblEmail">Email:</string>
+    <string name="details_lblPhone">Phone:</string>
+    <string name="details_lblAddress">Address:</string>
+    <string name="formAppoPerDay_hintDate">Date</string>
 </resources>

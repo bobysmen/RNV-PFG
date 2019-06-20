@@ -104,13 +104,13 @@ public class AppointmentDailyAdapter extends ListAdapter<Appointment, Appointmen
                         lblName.setText(response.body().getName());
                         lblSurname.setText(response.body().getSurname());
                     }else{
-                        Toast.makeText(lblName.getContext(),"A ocurrido un error", Toast.LENGTH_LONG).show();
+                        Toast.makeText(lblName.getContext(),lblName.getContext().getResources().getString(R.string.call_msgNullResponse), Toast.LENGTH_LONG).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Patient> call, Throwable t) {
-
+                    Toast.makeText(lblName.getContext(),lblName.getContext().getResources().getString(R.string.call_onFailure_msg), Toast.LENGTH_LONG).show();
                 }
             });
         }

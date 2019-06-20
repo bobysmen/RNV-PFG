@@ -93,13 +93,13 @@ public class AppointmentsDaily extends Fragment {
                 if(response.body() != null && response.isSuccessful()){
                     viewModel.setAppointments(response.body());
                 }else{
-                    Toast.makeText(getContext(),"A ocurrido un error", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),getString(R.string.call_msgNullResponse), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Appointment>> call, Throwable t) {
-
+                Toast.makeText(getContext(),getString(R.string.call_onFailure_msg), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -124,13 +124,13 @@ public class AppointmentsDaily extends Fragment {
                 if(response.body() != null && response.isSuccessful()){
                     deleteAppointment(appointment);
                 }else{
-                    Toast.makeText(getContext(),"A ocurrido un error", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),getString(R.string.call_msgNullResponse), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Boolean> call, Throwable t) {
-
+                Toast.makeText(getContext(),getString(R.string.call_onFailure_msg), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -144,13 +144,13 @@ public class AppointmentsDaily extends Fragment {
                     Toast.makeText(getContext(),"Appointment delete", Toast.LENGTH_LONG).show();
                     callAppointmentDaily();
                 }else{
-                    Toast.makeText(getContext(),"A ocurrido un error,", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),getString(R.string.call_msgNullResponse), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Boolean> call, Throwable t) {
-
+                Toast.makeText(getContext(),getString(R.string.call_onFailure_msg), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -166,13 +166,13 @@ public class AppointmentsDaily extends Fragment {
                     //Evito navegar con pacientes nulos
                     Navigation.findNavController(getView()).navigate(R.id.action_appointmentsDaily_to_diagnosisFragment);
                 }else{
-                    Toast.makeText(getContext(),"A ocurrido un error", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),getString(R.string.call_msgNullResponse), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Patient> call, Throwable t) {
-                Toast.makeText(getContext(),"A ocurrido un error", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),getString(R.string.call_onFailure_msg), Toast.LENGTH_LONG).show();
             }
         });
     }

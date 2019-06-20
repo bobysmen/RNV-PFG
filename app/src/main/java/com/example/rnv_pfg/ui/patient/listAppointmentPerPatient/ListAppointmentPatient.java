@@ -75,13 +75,13 @@ public class ListAppointmentPatient extends Fragment {
                 if(response.body() != null && response.isSuccessful()){
                     viewModel.setAppointments(response.body());
                 }else{
-                    Toast.makeText(getContext(),"A ocurrido un error", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),getString(R.string.call_msgNullResponse), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Appointment>> call, Throwable t) {
-
+                Toast.makeText(getContext(),getString(R.string.call_onFailure_msg), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -106,13 +106,13 @@ public class ListAppointmentPatient extends Fragment {
                 if(response.body() != null && response.isSuccessful()){
                     deleteAppointment(appointment);
                 }else{
-                    Toast.makeText(getContext(),"A ocurrido un error", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),getString(R.string.call_msgNullResponse), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Boolean> call, Throwable t) {
-
+                Toast.makeText(getContext(),getString(R.string.call_onFailure_msg), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -123,16 +123,16 @@ public class ListAppointmentPatient extends Fragment {
             @Override
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                 if(response.body() != null && response.isSuccessful() && response.body()){
-                    Toast.makeText(getContext(),"Appointment delete", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),getString(R.string.onResponse_success_appintmentDelete), Toast.LENGTH_LONG).show();
                     callAppointment();
                 }else{
-                    Toast.makeText(getContext(),"A ocurrido un error,", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),getString(R.string.call_msgNullResponse), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Boolean> call, Throwable t) {
-
+                Toast.makeText(getContext(),getString(R.string.call_onFailure_msg), Toast.LENGTH_LONG).show();
             }
         });
     }

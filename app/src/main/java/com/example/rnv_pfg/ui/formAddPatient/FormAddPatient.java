@@ -123,15 +123,15 @@ public class FormAddPatient extends Fragment {
                 @Override
                 public void onResponse(Call<Patient> call, Response<Patient> response) {
                     if(response.body() != null && response.isSuccessful()){
-                        Toast.makeText(getContext(),"Insertado correctamente", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),getString(R.string.onResponse_msgSaveSuccess), Toast.LENGTH_LONG).show();
                     }else{
-                        Toast.makeText(getContext(),"A ocurrido un error", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),getString(R.string.call_msgNullResponse), Toast.LENGTH_LONG).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Patient> call, Throwable t) {
-
+                    Toast.makeText(getContext(),getString(R.string.call_onFailure_msg), Toast.LENGTH_LONG).show();
                 }
             });
         }else{

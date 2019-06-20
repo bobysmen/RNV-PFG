@@ -124,15 +124,15 @@ public class RegisterEmployee extends Fragment {
                     @Override
                     public void onResponse(Call<Employee> call, Response<Employee> response) {
                         if(response.body() != null && response.isSuccessful()){
-                            Toast.makeText(getContext(),"El empleado" + response.body().getName() + "se agregro correctamente", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),getString(R.string.onResponse_msgSaveSuccess), Toast.LENGTH_LONG).show();
                         }else{
-                            Toast.makeText(getContext(),"El empleado no se agrego correctamente", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),getString(R.string.call_msgNullResponse), Toast.LENGTH_LONG).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Employee> call, Throwable t) {
-                        Toast.makeText(getContext(),"Error de conexion", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),getString(R.string.call_onFailure_msg), Toast.LENGTH_LONG).show();
                     }
                 });
             }else{

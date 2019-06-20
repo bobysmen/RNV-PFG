@@ -104,14 +104,13 @@ public class LoginFragment extends Fragment {
                         viewModel.setEmployee(response.body());
                         Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_appointmentsDaily);
                     }else{
-                        //TODO Mensajes de error en recursos de cadenas
-                        Toast.makeText(getContext(),"El email o contraseña son incorrectos", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),getString(R.string.onFailure_msgLoginIncorrect), Toast.LENGTH_LONG).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Employee> call, Throwable t) {
-                    Toast.makeText(getContext(),"Error de conexion", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),getString(R.string.onFailure_msgLoginIncorrect), Toast.LENGTH_LONG).show();
                 }
             });
         }else{
